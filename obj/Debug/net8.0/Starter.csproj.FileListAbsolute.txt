@@ -1,0 +1,5 @@
+C:\Learning\-Contoso-Pets-.NET-Application\obj\Debug\net8.0\Starter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Learning\-Contoso-Pets-.NET-Application\obj\Debug\net8.0\Starter.AssemblyInfoInputs.cache
+C:\Learning\-Contoso-Pets-.NET-Application\obj\Debug\net8.0\Starter.AssemblyInfo.cs
+C:\Learning\-Contoso-Pets-.NET-Application\obj\Debug\net8.0\Starter.csproj.CoreCompileInputs.cache
+C:\Learning\-Contoso-Pets-.NET-Application\obj\Debug\net8.0\Starter.sourcelink.json
