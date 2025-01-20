@@ -86,18 +86,45 @@ namespace Contoso.Pets.Service
         }
     }
 
-    public  void AddNewPet(List<Animal> animalsList) {
+ public  static  void ValidAnimalData(DataEntry dataEntryService) 
+ {
+    foreach(Animal animal in  dataEntryService.ourAnimals) 
+    {
+            if (animal.ID == "") {
+                continue;
+            }
 
-        string anotherPet = "y";
-        int petCount = 0;
-        
-        for (int i = 0; i < maxPets; i++) {
-            
-        }
+
+            if(animal.Age == "?" || animal.PhysicalDescription == "") {
+                Console.WriteLine($"Enter an age for ID #{animal.ID}");
+                string inputAge = Console.ReadLine();
+                
+                do 
+                {
+                    Console.WriteLine($"Enter an age for ID #{animal.ID}");
+                    inputAge = Console.ReadLine();
+                } while (!int.TryParse(inputAge, out int petAge));
+
+                animal.Age = inputAge;
+
+                Console.WriteLine($"Enter physical description for ID: {animal.PersonalityDescription} (size, color, gender, weight, housebroken)");
+
+                string descriptionInput = Console.ReadLine();
+                
+
+               do
+                {
+                    Console.WriteLine($"Enter physical description for ID: {animal.PersonalityDescription} (size, color, gender, weight, housebroken)");
+                    descriptionInput = Console.ReadLine();
+                }  while (string.IsNullOrEmpty(descriptionInput));
+
+                animal.PhysicalDescription = descriptionInput;
+
+                Console.WriteLine("Age and physical description fields are complete for all of our friends.");
+                Console.WriteLine("Press the Enter key to continue");
+                Console.ReadLine();
     }
-
-
-
-
-}
-}   
+   }
+  }
+ }
+}  

@@ -19,8 +19,6 @@ class Program
             }
         }
         while (menuSelection.Trim().ToLower() != "exit");
-
-       DataEntry.DisplayAnimals(animalDataEntry);
     }
 
    

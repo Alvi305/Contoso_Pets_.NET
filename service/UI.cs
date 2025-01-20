@@ -9,13 +9,16 @@ public class UI
         {
             case "1":
                 // List all of our current pet information
+                Console.WriteLine("You selected menu option 1");
+                Console.WriteLine("Press the Enter key to continue.");
+                Console.ReadLine();
                 DataEntry.DisplayAnimals(animalData);
                 menuSelection = Console.ReadLine()!;
                 break;
 
             case "2":
                 Console.WriteLine("You selected menu option 2.");
-                Console.WriteLine("Press the Enter key to continue.");
+                DataEntry.ValidAnimalData(animalData);
                 menuSelection = Console.ReadLine()!;
                 break;
 
@@ -48,6 +51,7 @@ public class UI
             default:
                 Console.WriteLine("No valid option selected.");
                 break;
+                
         }
 
         Console.WriteLine("Press the Enter key to continue.");
