@@ -8,5 +8,12 @@ namespace Contoso.Pets.Models
         public string PhysicalDescription { get; set; }
         public string PersonalityDescription { get; set; }
         public string Nickname { get; set; }
+
+        public bool IsValid()
+    {
+        return !string.IsNullOrWhiteSpace(ID);
     }
+    }
+
+    
 }

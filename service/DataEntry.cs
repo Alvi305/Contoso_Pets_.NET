@@ -70,8 +70,34 @@ namespace Contoso.Pets.Service
             }
 
     return ourAnimals;
-
     }
-    
+
+    public static void DisplayAnimals(DataEntry dataEntryService)
+    {
+        foreach (Animal animal in dataEntryService.ourAnimals)
+        {
+            Console.WriteLine("ID: " + animal.ID);
+            Console.WriteLine("Species: " + animal.Species);
+            Console.WriteLine("Age: " + animal.Age);
+            Console.WriteLine("Nickname: " + animal.Nickname);
+            Console.WriteLine("Physical Description: " + animal.PhysicalDescription);
+            Console.WriteLine("Personality Description: " + animal.PersonalityDescription);
+            Console.WriteLine("-----------------------------");
+        }
+    }
+
+    public  void AddNewPet(List<Animal> animalsList) {
+
+        string anotherPet = "y";
+        int petCount = 0;
+        
+        for (int i = 0; i < maxPets; i++) {
+            
+        }
+    }
+
+
+
+
 }
 }   
