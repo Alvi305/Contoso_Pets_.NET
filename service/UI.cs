@@ -18,13 +18,13 @@ public class UI
 
             case "2":
                 Console.WriteLine("You selected menu option 2.");
-                DataEntry.ValidAnimalData(animalData);
+                DataEntry.AddAnimal(animalData);
                 menuSelection = Console.ReadLine()!;
                 break;
 
             case "3":
-                Console.WriteLine("You selected menu option 2.");
-                Console.WriteLine("Press the Enter key to continue.");
+                Console.WriteLine("You selected menu option 3.");
+                DataEntry.ValidAnimalData(animalData);
                 menuSelection = Console.ReadLine()!;
                 break;
 

@@ -86,11 +86,202 @@ namespace Contoso.Pets.Service
         }
     }
 
+public static void AddAnimal(DataEntry dataEntryService)
+{
+    string anotherPet = "y";
+    int petCount = 0;
+
+    string readResult = "";
+
+
+
+    // display existing pets and update petcount
+    for (int i = 0; i < dataEntryService.maxPets; i++)
+    {
+        var animal = dataEntryService.ourAnimals[i];
+        if (animal.ID != "")
+        {
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine($"Species: {animal.Species}");
+            Console.WriteLine($"ID #: {animal.ID}");
+            Console.WriteLine($"Age: {animal.Age}");
+            Console.WriteLine($"Physical Description: {animal.PhysicalDescription}");
+            Console.WriteLine($"Personality Description: {animal.PersonalityDescription}");
+            Console.WriteLine($"Nickname: {animal.Nickname}");
+            Console.WriteLine("-----------------------------");
+
+            petCount += 1;
+        }
+    }
+
+    if (petCount < dataEntryService.maxPets)
+    {
+
+        bool validEntry = false;
+
+        string animalSpecies = "";
+        string animalID = "";
+        string animalPhysicalDescription="";
+        string animalPersonalityDescription="";
+        string animalNickname = "";
+
+        // get species (cat or dog) - string animalSpecies is a required field 
+        do
+        {
+            // Species code block
+            Console.WriteLine("\n\rEnter 'dog' or 'cat' to begin a new entry");
+            readResult = Console.ReadLine();
+
+            animalSpecies = NullCheckandConvertToLower(readResult);
+
+            if (animalSpecies != "dog" && animalSpecies != "cat")
+                validEntry = false;
+        
+            else
+            {
+                validEntry = true;
+                animalID = animalSpecies.Substring(0, 1) + (petCount + 1).ToString();
+            }
+
+        // Age  code block
+            int petAge; 
+
+            Console.WriteLine("Enter the pet's age or enter ? if unknown");
+
+            readResult = Console.ReadLine();
+
+            var animalAge = NullCheckandConvertToLower(readResult);
+
+            if (animalAge != "?")
+            {
+                validEntry = int.TryParse(animalAge, out petAge);
+            }
+            else
+            {
+                validEntry = true;
+            }
+
+
+        // get a description of the pet's physical appearance/condition - animalPhysicalDescription can be blank.
+            do
+            {
+                Console.WriteLine("Enter a physical description of the pet (size, color, gender, weight, housebroken)");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalPhysicalDescription = readResult.ToLower();
+                    if (animalPhysicalDescription == "")
+                    {
+                        animalPhysicalDescription = "tbd";
+                        
+                    }
+
+                    else
+                        validEntry = true;
+
+                }
+            } while (animalPhysicalDescription == "");
+
+        // get a description of the pet's personality - animalPersonalityDescription can be blank.
+            do
+            {
+                Console.WriteLine("Enter a description of the pet's personality (likes or dislikes, tricks, energy level)");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalPersonalityDescription = readResult.ToLower();
+                    if (animalPersonalityDescription == "")
+                    {
+                        animalPersonalityDescription = "tbd";
+                    }
+
+                    else
+                        validEntry = true;
+                }
+            } while (animalPersonalityDescription == "");
+
+            // get the pet's nickname. animalNickname can be blank.
+            do
+            {
+                Console.WriteLine("Enter a nickname for the pet");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalNickname = readResult.ToLower();
+                    if (animalNickname == "")
+                    {
+                        animalNickname = "tbd";
+                    }
+                    else
+                        validEntry = true;
+                }
+            } while (animalNickname == "");
+
+
+            if (validEntry) 
+            {
+                
+
+            }
+
+
+        } while (validEntry == false);
+
+
+
+
+
+        while (anotherPet == "y" && petCount <dataEntryService.maxPets)
+        {
+
+        Console.WriteLine("Do you want to enter info for another pet (y/n)");
+            do
+            {
+                Console.WriteLine($"We currently have {petCount} pets that need homes. We can manage {(dataEntryService.maxPets - petCount)} more.");
+                Console.WriteLine("Do you want to enter info for another pet (y/n)");
+
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    anotherPet = readResult.ToLower().Trim();
+                }
+
+                if (anotherPet != "y" && anotherPet != "n")
+                {
+                    Console.WriteLine("Please enter y or n");
+                }
+            } while (anotherPet != "y" && anotherPet != "n");
+
+        }
+    }
+
+    if (petCount >= dataEntryService.maxPets)
+    {
+        Console.WriteLine("We have reached our limit on the number of pets that we can manage.");
+        Console.WriteLine("Press the Enter key to continue.");
+        readResult = Console.ReadLine();
+    }
+}
+
+public static string  NullCheckandConvertToLower(string result) 
+{
+            if (result != null) 
+                return result.ToLower();
+
+            else 
+             {
+                Console.WriteLine($"Please enter value");
+                 return string.Empty;
+             }
+}
+
+
  public  static  void ValidAnimalData(DataEntry dataEntryService) 
  {
     foreach(Animal animal in  dataEntryService.ourAnimals) 
     {
-            if (animal.ID == "") {
+            if (animal.ID == "") 
+            {
                 continue;
             }
 
@@ -111,7 +302,6 @@ namespace Contoso.Pets.Service
 
                 string descriptionInput = Console.ReadLine();
                 
-
                do
                 {
                     Console.WriteLine($"Enter physical description for ID: {animal.PersonalityDescription} (size, color, gender, weight, housebroken)");
@@ -124,7 +314,7 @@ namespace Contoso.Pets.Service
                 Console.WriteLine("Press the Enter key to continue");
                 Console.ReadLine();
     }
-   }
+   }    
   }
  }
 }  
