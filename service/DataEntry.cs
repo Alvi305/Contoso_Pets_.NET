@@ -20,7 +20,7 @@ namespace Contoso.Pets.Service
     {
          for (int i = 0; i < maxPets; i++)
             {
-                Animal animal = new Animal();
+                Animal animal = new();
                 
                 switch (i)
                 {
@@ -93,8 +93,6 @@ public static void AddAnimal(DataEntry dataEntryService)
 
     string readResult = "";
 
-
-
     // display existing pets and update petcount
     for (int i = 0; i < dataEntryService.maxPets; i++)
     {
@@ -115,8 +113,7 @@ public static void AddAnimal(DataEntry dataEntryService)
     }
 
     if (petCount < dataEntryService.maxPets)
-    {
-
+    {   
         bool validEntry = false;
 
         string animalSpecies = "";
@@ -220,16 +217,21 @@ public static void AddAnimal(DataEntry dataEntryService)
 
             if (validEntry) 
             {
-                
+                Animal newAnimal = new Animal (
+                    animalSpecies,
+                    animalID,
+                    animalAge,
+                    animalPhysicalDescription,
+                    animalPersonalityDescription,
+                    animalNickname
 
+                );
+                    dataEntryService.ourAnimals.Add(newAnimal);
+                    petCount ++;
             }
 
 
         } while (validEntry == false);
-
-
-
-
 
         while (anotherPet == "y" && petCount <dataEntryService.maxPets)
         {
