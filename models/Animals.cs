@@ -2,18 +2,18 @@ namespace Contoso.Pets.Models
 {
     public class Animal
     {
-        public Animal()
-        {
-        }
+        public Animal() { }
 
-        public Animal(string animalSpecies, string animalID, string animalAge, string animalPhysicalDescription, string animalPersonalityDescription, string animalNickname)
+        public Animal(string species, string id, string age, 
+                     string physicalDescription, string personalityDescription, 
+                     string nickname)
         {
-            AnimalSpecies = animalSpecies;
-            AnimalID = animalID;
-            Age = animalAge;
-            AnimalPhysicalDescription = animalPhysicalDescription;
-            AnimalPersonalityDescription = animalPersonalityDescription;
-            AnimalNickname = animalNickname;
+            Species = species;
+            ID = id;
+            Age = age;
+            PhysicalDescription = physicalDescription;
+            PersonalityDescription = personalityDescription;
+            Nickname = nickname;
         }
 
         public string Species { get; set; }
@@ -22,18 +22,10 @@ namespace Contoso.Pets.Models
         public string PhysicalDescription { get; set; }
         public string PersonalityDescription { get; set; }
         public string Nickname { get; set; }
-        public string AnimalSpecies { get; }
-        public string AnimalID { get; }
-    
-        public string AnimalPhysicalDescription { get; }
-        public string AnimalPersonalityDescription { get; }
-        public string AnimalNickname { get; }
 
         public bool IsValid()
-    {
-        return !string.IsNullOrWhiteSpace(ID);
+        {
+            return !string.IsNullOrWhiteSpace(ID);
+        }
     }
-    }
-
-    
 }

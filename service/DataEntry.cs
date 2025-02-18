@@ -178,7 +178,7 @@ public static void AddAnimal()
             animalPersonalityDescription,
             animalNickname
         );
-
+        
         ourAnimals.Add(newAnimal);
         petCount++;
 
