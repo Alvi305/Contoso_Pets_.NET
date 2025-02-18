@@ -2,59 +2,70 @@ namespace Contoso.Pets.Service;
 
 public class UI
 {
-    public static void UIselect(string menuSelection, DataEntry animalData)
+    public static void Run(DataEntry animalData)
     {
-
-        switch (menuSelection)
+        string menuSelection;
+        do
         {
-            case "1":
-                // List all of our current pet information
-                Console.WriteLine("You selected menu option 1");
-                Console.WriteLine("Press the Enter key to continue.");
-                Console.ReadLine();
-                DataEntry.DisplayAnimals(animalData);
-                menuSelection = Console.ReadLine()!;
-                break;
+            // NOTE: the Console.Clear method is throwing an exception in debug sessions
+             try
+            {
+                if (!Console.IsOutputRedirected)
+                    Console.Clear();
+            }
+            catch (IOException)
+            {
+                // Ignore clear errors in debug environments
+                Console.WriteLine("Fuck you");
+            }
+            Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
+            Console.WriteLine(" 1. List all of our current pet information");
+            Console.WriteLine(" 2. Add a new animal");
+            Console.WriteLine(" 3. Validate animal data");
+            // Add other menu options (4-8) here as needed
+            Console.WriteLine();
+            Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
-            case "2":
-                Console.WriteLine("You selected menu option 2.");
-                DataEntry.AddAnimal(animalData);
-                menuSelection = Console.ReadLine()!;
-                break;
+            var readResult = Console.ReadLine();
+            menuSelection = (readResult ?? "").ToLower();
 
-            case "3":
-                Console.WriteLine("You selected menu option 3.");
-                DataEntry.ValidAnimalData(animalData);
-                menuSelection = Console.ReadLine()!;
-                break;
+            switch (menuSelection)
+            {
+                case "1":
+                    // List all pets
+                    DataEntry.DisplayAnimals();
+                    Console.WriteLine("\nPress the Enter key to continue.");
+                    Console.ReadLine();
+                    break;
 
-            case "4":
-                // Implement functionality for menu selection 4
-                break;
+                case "2":
+                    // Add a new animal
+                    DataEntry.AddAnimal();
+                    Console.WriteLine("\nPress the Enter key to continue.");
+                    Console.ReadLine();
+                    break;
 
-            case "5":
-                // Implement functionality for menu selection 5
-                break;
+                case "3":
+                    // Validate animal data
+                    DataEntry.ValidAnimalData(animalData);
+                    Console.WriteLine("\nPress the Enter key to continue.");
+                    Console.ReadLine();
+                    break;
 
-            case "6":
-                // Implement functionality for menu selection 6
-                break;
+                // Implement cases 4-8 as needed
+                // case "4":
+                //     // Functionality for option 4
+                //     break;
 
-            case "7":
-                // Implement functionality for menu selection 7
-                break;
+                case "exit":
+                    break;
 
-            case "8":
-                // Implement functionality for menu selection 8
-                break;
+                default:
+                    Console.WriteLine("No valid option selected. Press Enter to continue.");
+                    Console.ReadLine();
+                    break;
+            }
 
-            default:
-                Console.WriteLine("No valid option selected.");
-                break;
-                
-        }
-
-        Console.WriteLine("Press the Enter key to continue.");
-        Console.ReadLine(); 
+        } while (menuSelection != "exit");
     }
 }
