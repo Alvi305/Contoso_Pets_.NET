@@ -10,8 +10,9 @@ namespace Contoso.Pets.Service
    
    public static List<Animal> ourAnimals =new List<Animal>(maxPets);
    public static int maxPets = 8;
+   public static decimal decimalDonation;
 
-   public DataEntry() {
+        public DataEntry() {
     InitializeAnimals(ourAnimals);
    }
 
@@ -26,7 +27,8 @@ public List<Animal> InitializeAnimals(List<Animal> animals)
         Age = "2",
         PhysicalDescription = "medium sized cream colored female golden retriever weighing about 65 pounds. housebroken.",
         PersonalityDescription = "loves to have her belly rubbed and likes to chase her tail. gives lots of kisses.",
-        Nickname = "lola"
+        Nickname = "lola",
+        SuggestedDonation = 85.00m
     };
     ourAnimals.Add(animal1);
 
@@ -37,7 +39,9 @@ public List<Animal> InitializeAnimals(List<Animal> animals)
         Age = "9",
         PhysicalDescription = "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.",
         PersonalityDescription = "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs.",
-        Nickname = "loki"
+        Nickname = "loki",
+        SuggestedDonation = 49.99m
+
     };
     ourAnimals.Add(animal2);
 
@@ -48,7 +52,8 @@ public List<Animal> InitializeAnimals(List<Animal> animals)
         Age = "1",
         PhysicalDescription = "small white female weighing about 8 pounds. litter box trained.",
         PersonalityDescription = "friendly",
-        Nickname = "Puss"
+        Nickname = "Puss",
+        SuggestedDonation = 40.00m
     };
     ourAnimals.Add(animal3);
 
@@ -59,7 +64,8 @@ public List<Animal> InitializeAnimals(List<Animal> animals)
         Age = "?",
         PhysicalDescription = "",
         PersonalityDescription = "",
-        Nickname = ""
+        Nickname = "",
+        SuggestedDonation = 45.00m
     };
     ourAnimals.Add(animal4);
 
@@ -76,6 +82,7 @@ public List<Animal> InitializeAnimals(List<Animal> animals)
             Console.WriteLine("Nickname: " + animal.Nickname);
             Console.WriteLine("Physical Description: " + animal.PhysicalDescription);
             Console.WriteLine("Personality Description: " + animal.PersonalityDescription);
+            Console.WriteLine($"Suggested Donation: {animal.SuggestedDonation:C2}");
             Console.WriteLine("-----------------------------");
         }
     }
@@ -115,6 +122,7 @@ public static void AddAnimal()
         string animalPhysicalDescription = "";
         string animalPersonalityDescription = "";
         string animalNickname = "";
+        string suggestedDontation = "";
 
         // get species (cat or dog) - string animalSpecies is a required field
         do
@@ -170,13 +178,23 @@ public static void AddAnimal()
         Console.WriteLine("Enter a nickname for the pet");
         animalNickname = Console.ReadLine()?.Trim() ?? "tbd";
 
+        // get suggestedDonation
+        Console.WriteLine("Enter Suggested Donation or leave empty for defualt of $45.00");
+        suggestedDontation = Console.ReadLine()?.Trim() ?? "45.00";
+
+        if(!decimal.TryParse(suggestedDontation, out decimalDonation))
+        {
+            decimalDonation = 45.00m;
+        }
+
         Animal newAnimal = new Animal(
             animalSpecies,
             animalID,
             animalAge,
             animalPhysicalDescription,
             animalPersonalityDescription,
-            animalNickname
+            animalNickname,
+            decimalDonation
         );
         
         ourAnimals.Add(newAnimal);
