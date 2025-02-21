@@ -16,13 +16,13 @@ public class UI
             catch (IOException)
             {
                 // Ignore clear errors in debug environments
-                Console.WriteLine("Fuck you");
+                Console.WriteLine("Clear error issue. Was not ignored. Please kill yourself.");
             }
             Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
             Console.WriteLine(" 1. List all of our current pet information");
             Console.WriteLine(" 2. Add a new animal");
             Console.WriteLine(" 3. Validate animal data");
-            // Add other menu options (4-8) here as needed
+            Console.WriteLine(" 4. Display all dogs with a specified characteristic");
             Console.WriteLine();
             Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
@@ -52,10 +52,11 @@ public class UI
                     Console.ReadLine();
                     break;
 
-                // Implement cases 4-8 as needed
-                // case "4":
-                //     // Functionality for option 4
-                //     break;
+                case "4":
+                    DataEntry.DogCharactersticSearch();
+                    Console.WriteLine("\nPress the Enter key to continue.");
+                    Console.ReadLine();
+                    break;
 
                 case "exit":
                     break;

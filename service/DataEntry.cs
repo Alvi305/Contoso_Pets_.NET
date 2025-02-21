@@ -92,7 +92,7 @@ public static void AddAnimal()
     string anotherPet = "y";
     int petCount = 0;
 
-    string readResult = "";
+    string? readResult;
 
     // display existing pets and update petCount
      Console.WriteLine("\nCurrent Animals:");
@@ -226,6 +226,7 @@ public static void AddAnimal()
 
  public  static  void ValidAnimalData(DataEntry dataEntryService) 
  {
+    string? inputAge;
     foreach(Animal animal in  ourAnimals) 
     {
             if (animal.ID == "") 
@@ -235,8 +236,6 @@ public static void AddAnimal()
 
 
             if(animal.Age == "?" || animal.PhysicalDescription == "") {
-                Console.WriteLine($"Enter an age for ID #{animal.ID}");
-                string inputAge = Console.ReadLine();
                 
                 do 
                 {
@@ -259,10 +258,67 @@ public static void AddAnimal()
                 animal.PhysicalDescription = descriptionInput;
 
                 Console.WriteLine("Age and physical description fields are complete for all of our friends.");
-                Console.WriteLine("Press the Enter key to continue");
-                Console.ReadLine();
     }
    }    
   }
+
+
+public static void DogCharactersticSearch () {
+
+    string dogCharacteristic = "";
+    string? readResult;
+
+
+      while (dogCharacteristic == "")
+            {
+                // have user enter multiple comma separated characteristics to search for
+                Console.WriteLine($"\r\nEnter one desired dog characteristic to search for");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    dogCharacteristic = readResult.ToLower().Trim();
+                    Console.WriteLine();
+                }
+            }
+
+            
+            bool noMatchesDog = true;
+
+            string dogDescription = "";
+
+            //update to "rotating" animation with countdown
+            string[] searchingIcons = {".  ", ".. ", "..."};
+
+            foreach(Animal animal in ourAnimals) {
+                if(animal.Species.Contains("dog"))
+                 {
+                    dogDescription = animal.PersonalityDescription + "\r\n" + animal.PhysicalDescription;
+                     for (int j = 1; j > -1 ; j--)
+                    {
+                    // #5 update "searching" message to show countdown 
+                        foreach (string icon in searchingIcons)
+                        {
+                            Console.Write($"\rsearching our dog {animal.Nickname} for {dogCharacteristic} {icon}");
+                            Thread.Sleep(250);
+                        }
+                        
+                        Console.Write($"\r{new String(' ', Console.BufferWidth)}");
+                    }
+
+                    if (dogDescription.Contains(dogCharacteristic))
+                    {
+                        Console.WriteLine($"Our dog {animal.Nickname} is a match. It has {dogCharacteristic} word in its description");
+                        noMatchesDog = false;
+                    }
+
+                 }
+            }
+
+             if (noMatchesDog)
+            {
+                Console.WriteLine("None of our dogs are a match found for: " + dogCharacteristic);
+            }
+    }
+
  }
 }  
