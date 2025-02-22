@@ -53,7 +53,7 @@ public class UI
                     break;
 
                 case "4":
-                    DataEntry.DogCharactersticSearch();
+                    DataEntry.DogCharacteristicSearch();
                     Console.WriteLine("\nPress the Enter key to continue.");
                     Console.ReadLine();
                     break;
